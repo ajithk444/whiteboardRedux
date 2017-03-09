@@ -1,3 +1,9 @@
 <h1>
   {{title}}
 </h1>
+<div>
+    <h5> Count: {{ count$ | async }}</h5>
+    <button (click)="increment()">+</button>
+    <button (click)="decrement()">-</button>
+</div>
+

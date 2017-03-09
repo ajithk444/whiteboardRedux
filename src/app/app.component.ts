@@ -1,4 +1,9 @@
 import { Component } from '@angular/core';
+import {IAppState} from "../store";
+import {NgRedux, select} from "@angular-redux/store";
+import {CounterActions} from "./app.actions";
+
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +12,19 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app works!';
+  @select() readonly count$: Observable<number>;
+
+  constructor(
+    private ngRedux: NgRedux<IAppState>,
+    private actions: CounterActions
+  ) {}
+
+
+  increment() {
+    this.ngRedux.dispatch(this.actions.increment());
+  } // of increment()
+
+  decrement() {
+    this.ngRedux.dispatch(this.actions.decrement());
+  }
 }
