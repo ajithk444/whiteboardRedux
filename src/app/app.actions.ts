@@ -10,11 +10,11 @@ export class CounterActions {
   static INCREMENT = "INCREMENT";
   static DECREMENT = "DECREMENT";
 
-  static increment(): Action {
+  increment(): Action {
     return { type: CounterActions.INCREMENT};
   }
 
-  static decrement(): Action {
+  decrement(): Action {
     return { type: CounterActions.DECREMENT};
   }
 }
