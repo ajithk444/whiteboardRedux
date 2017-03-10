@@ -2,6 +2,19 @@
 
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { NgRedux, DevToolsExtension } from '@angular-redux/store';
+import {CounterActions} from "./app.actions";
+
+// I follow a minimal mocking approach:
+// Mock all dependencies with empty objects
+// and let each test specify the exact stub
+// or spy behaviour that it needs. This keeps
+// mocks simple and tests decoupled as they
+// should be.
+const mockRedux = {
+  dispatch: function() {},
+};
+const mockDevTools = {};
 
 describe('AppComponent', () => {
   beforeEach(() => {
@@ -9,6 +22,12 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
+      providers: [
+        { provide: NgRedux, useValue: mockRedux },
+        // NgRedux,
+        // { provide: DevToolsExtension, useValue: mockDevTools },
+        CounterActions
+      ]
     });
     TestBed.compileComponents();
   });
