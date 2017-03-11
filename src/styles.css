@@ -1,6 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 body {
   font-family: 'Nunito Sans', sans-serif;
+  color: whitesmoke;
+  background: #58a;
+  background-image:
+    linear-gradient(lightgrey 1px, transparent 0),
+    linear-gradient(90deg, lightgrey 1px, transparent 0);
+  background-size: 30px 30px;
 }
 
 h1, h2, h3, h4, h5 {

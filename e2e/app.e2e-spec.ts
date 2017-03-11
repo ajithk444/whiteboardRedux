@@ -6,9 +6,9 @@ describe('whiteboard-redux App', function() {
   beforeEach(() => {
     page = new WhiteboardReduxPage();
   });
-
-  it('should display message saying app works', () => {
+  const expectedTitle = 'Whiteboard with Redux';
+  it('should display message saying ' + expectedTitle + '!', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    expect(page.getParagraphText()).toEqual(expectedTitle);
   });
 });
