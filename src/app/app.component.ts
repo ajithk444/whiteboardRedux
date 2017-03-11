@@ -11,7 +11,7 @@ import {Observable} from "rxjs";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app works!';
+  title = 'Whiteboard with Redux';
   @select() readonly count$: Observable<number>;
 
   constructor(
