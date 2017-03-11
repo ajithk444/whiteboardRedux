@@ -6,9 +6,9 @@ import {CounterActions} from "./app.actions";
 import {Observable} from "rxjs";
 
 @Component({
-  selector: 'app-root',
+  selector: 'ellzap-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   title = 'Whiteboard with Redux';

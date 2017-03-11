@@ -6,6 +6,7 @@ import { NgRedux } from '@angular-redux/store';
 import {CounterActions} from "./app.actions";
 import {NgZone} from "@angular/core";
 import {rootReducer, INITIAL_STATE} from "../store";
+import {WhiteboardComponent} from "./whiteboard/whiteboard.component";
 
 // *** 1. Redux initialize: ***
 class MockNgZone {
@@ -28,7 +29,8 @@ describe('AppComponent', () => {
     // *** End of init ***
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        WhiteboardComponent
       ],
       providers: [
         // 3. Inject to the components:
