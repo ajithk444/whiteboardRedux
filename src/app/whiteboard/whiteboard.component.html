@@ -1,6 +1,6 @@
-<h1> {{ wbTitle }}</h1>
+<h1> {{ wbTitle$ | async }}</h1>
   <div id="testWhiteBoard"
-       [style.width]="wbWidth + 'px'"
-       [style.height]="wbHeight + 'px'"
+       [style.width]="(wbWidth$ | async) + 'px'"
+       [style.height]="(wbHeight$ | async) + 'px'"
   >...</div>
 

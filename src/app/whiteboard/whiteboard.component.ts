@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {select} from "@angular-redux/store";
+import {Observable} from "rxjs";
+//import {CounterActions} from "../app.actions";
+//import {IAppState} from "../../store";
 
 @Component({
   selector: 'ellzap-whiteboard',
@@ -6,13 +10,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./whiteboard.component.css']
 })
 export class WhiteboardComponent implements OnInit {
-  wbTitle = 'My Whiteboard 01';
-  wbWidth = 500;
-  wbHeight = 300;
+  @select() readonly wbTitle$: Observable<string>;
+  @select() readonly wbWidth$: Observable<number>;
+  @select() readonly wbHeight$: Observable<number>;
 
-  constructor() { }
+  //constructor(private ngRedux: NgRedux<IAppState>,
+  //            private actions: CounterActions) { }
+  constructor() {};
 
   ngOnInit() {
+
   }
 
 }
