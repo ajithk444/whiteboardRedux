@@ -1,5 +1,6 @@
 import { Action } from 'redux';
 import {CounterActions} from "./app/app.actions";
+import {WhiteboardActions} from "./app/whiteboard/whiteboard.actions";
 /**
  * Created by eller on 09.03.17.
  */
@@ -29,6 +30,10 @@ export function rootReducer(lastState: IAppState, action: Action) {
     case CounterActions.DECREMENT:
       if( lastState.count > 0)
         return Object.assign({}, lastState, {count: lastState.count - 1});
+    case WhiteboardActions.WB_INCREASE_HEIGTH:
+      return Object.assign({}, lastState, {wbWidth: lastState.wbHeight + 30});
+              // ToDo work with payload!
+
   }
   // Always return the current state for unkown actions!
   return lastState;

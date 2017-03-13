@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {select} from "@angular-redux/store";
 import {Observable} from "rxjs";
-//import {CounterActions} from "../app.actions";
+import {WhiteboardActions} from "./whiteboard.actions";
 //import {IAppState} from "../../store";
 
 @Component({
