@@ -1,4 +1,10 @@
 <h1> {{ wbTitle$ | async }}</h1>
+<div>
+  <button (click)="heightPlus()">H+</button>
+  <button (click)="heightMinus()">H-</button>
+  <button (click)="widthPlus()">W+</button>
+  <button (click)="widthMinus()">W-</button>
+</div>
   <div id="testWhiteBoard"
        [style.width]="(wbWidth$ | async) + 'px'"
        [style.height]="(wbHeight$ | async) + 'px'"

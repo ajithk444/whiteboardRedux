@@ -1,7 +1,7 @@
 #testWhiteBoard {
-  position: absolute;
+  position: relative;
   left:10px;
-  top:230px;
+  top:20px;
   background-color: ivory;
   border: 1px dashed black ;
 }

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {select} from "@angular-redux/store";
+import {select, NgRedux} from "@angular-redux/store";
 import {Observable} from "rxjs";
 import {WhiteboardActions} from "./whiteboard.actions";
+import {IAppState} from "../../store";
+import {ngAppResolve} from "angular-cli/models/webpack-configs";
 //import {IAppState} from "../../store";
 
 @Component({
@@ -16,10 +18,25 @@ export class WhiteboardComponent implements OnInit {
 
   //constructor(private ngRedux: NgRedux<IAppState>,
   //            private actions: CounterActions) { }
-  constructor() {};
+  constructor(private ngRedux: NgRedux<IAppState>) {};
 
   ngOnInit() {
 
+  }
+
+  // *** normal functions: ***
+  heightPlus() {
+    this.ngRedux.dispatch(WhiteboardActions.increaseHeight(10));
+  }
+  heightMinus() {
+    this.ngRedux.dispatch(WhiteboardActions.increaseHeight(-10));
+  }
+
+  widthPlus() {
+    this.ngRedux.dispatch(WhiteboardActions.increaseWidth(10));
+  }
+  widthMinus() {
+    this.ngRedux.dispatch(WhiteboardActions.increaseWidth(-10));
   }
 
 }
