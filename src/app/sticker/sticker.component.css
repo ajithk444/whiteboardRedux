@@ -1,5 +1,12 @@
 .stickerNote {
   position: relative;
+  color: darkblue;
   background-color: greenyellow;
-  border: solid 1px black;
+  border: solid 1px darkblue;
+  padding: 3px;
+}
+.stickerTop{
+  background-color: darkblue;
+  color:ghostwhite;
+  padding: 1px;
 }

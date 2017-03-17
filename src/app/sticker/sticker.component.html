@@ -1,7 +1,9 @@
-<div class="stickerNote">
-<!--     [style.width]="(sticker$ | async).stWidth + 'px'"
-     [style.height]="(sticker$ | async).stHeight + 'px'"
-     -->
-
-  Sticker :-)
+<div class="stickerNote"
+     [style.top]="sticker.stTop + 'px'"
+     [style.left]="sticker.stLeft + 'px'"
+     [style.width]="sticker.stWidth + 'px'"
+     [style.height]="sticker.stHeight + 'px'"
+     >
+  <div class="stickerTop">{{sticker.stTitle}}</div>
+  {{sticker.stText}}
 </div>

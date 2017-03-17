@@ -1,5 +1,5 @@
 
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {select, NgRedux} from "@angular-redux/store";
 import {ISticker, IAppState} from "../../store";
 import {Observable} from "rxjs";
@@ -10,9 +10,11 @@ import {Observable} from "rxjs";
   styleUrls: ['./sticker.component.css']
 })
 export class StickerComponent implements OnInit {
-  @select() readonly sticker$: Observable<ISticker>;
+  //@select() readonly sticker$: Observable<ISticker>;
+  @Input() sticker: ISticker;
 
-  constructor(private ngRedux: NgRedux<IAppState>) {}
+  //constructor(private ngRedux: NgRedux<IAppState>) {}
+  constructor() {}
 
   ngOnInit() {
     console.log("Im here :-)");
