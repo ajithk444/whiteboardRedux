@@ -8,5 +8,11 @@
   <div id="testWhiteBoard"
        [style.width]="(wbWidth$ | async) + 'px'"
        [style.height]="(wbHeight$ | async) + 'px'"
-  >...</div>
+  >...
+  <div *ngFor="let sticker of (stickers$ | async) ">
+    <ellzap-sticker
+      [sticker$]="sticker"
+    ></ellzap-sticker>
+  </div>
+  </div>
 

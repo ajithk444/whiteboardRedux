@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import {IAppState, rootReducer, INITIAL_STATE} from "../store";
 import {CounterActions} from "./app.actions";
 import { WhiteboardComponent } from './whiteboard/whiteboard.component';
+import { StickerComponent } from './sticker/sticker.component';
 
 @NgModule({
   schemas: [
@@ -16,7 +17,8 @@ import { WhiteboardComponent } from './whiteboard/whiteboard.component';
   ],
   declarations: [
     AppComponent,
-    WhiteboardComponent
+    WhiteboardComponent,
+    StickerComponent
   ],
   imports: [
     BrowserModule,
