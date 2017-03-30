@@ -4,7 +4,7 @@ import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { NgRedux } from '@angular-redux/store';
 import {CounterActions} from "./app.actions";
-import {NgZone} from "@angular/core";
+import {NgZone, CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
 import {rootReducer, INITIAL_STATE} from "../store";
 import {WhiteboardComponent} from "./whiteboard/whiteboard.component";
 
@@ -28,6 +28,9 @@ describe('AppComponent', () => {
     );
     // *** End of init ***
     TestBed.configureTestingModule({
+      schemas: [
+        CUSTOM_ELEMENTS_SCHEMA
+      ],
       declarations: [
         AppComponent,
         WhiteboardComponent

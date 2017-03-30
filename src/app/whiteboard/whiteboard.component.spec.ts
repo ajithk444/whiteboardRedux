@@ -1,15 +1,11 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-//import { By } from '@angular/platform-browser';
-//import { DebugElement } from '@angular/core';
-
 import { WhiteboardComponent } from './whiteboard.component';
 import { NgRedux } from '@angular-redux/store';
-import {NgZone} from "@angular/core";
+import {NgZone, CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
 import {rootReducer, INITIAL_STATE} from "../../store";
 import {CounterActions} from "../app.actions";
 
-describe('WhiteboardComponent', () => {
   let component: WhiteboardComponent;
   let fixture: ComponentFixture<WhiteboardComponent>;
 
@@ -23,6 +19,7 @@ describe('WhiteboardComponent', () => {
   let ngRedux;
   // *** end of Redux init ***
 
+describe('WhiteboardComponent', () => {
   beforeEach(async(() => {
     // *** 2. Reset to the intital state: ***
     ngRedux = new NgRedux(mockNgZone);
@@ -32,6 +29,9 @@ describe('WhiteboardComponent', () => {
     );
     // *** End of init ***
     TestBed.configureTestingModule({
+      schemas: [
+        CUSTOM_ELEMENTS_SCHEMA
+      ],
       declarations: [ WhiteboardComponent ],
       providers: [
         // 3. Inject to the components:

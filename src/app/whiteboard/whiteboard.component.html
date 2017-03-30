@@ -12,6 +12,8 @@
   <div *ngFor="let sticker of (stickers$ | async) ">
     <ellzap-sticker
       [sticker]="sticker"
+      (selected)="stickerSelected($event)"
+      (movement)="stickerMove($event)"
     ></ellzap-sticker>
   </div>
   </div>
