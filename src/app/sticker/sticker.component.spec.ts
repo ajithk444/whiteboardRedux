@@ -6,7 +6,6 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgZone} from '@angular/core';
 
 import { StickerComponent } from './sticker.component';
 import {INITIAL_STATE, rootReducer} from "../../store";
-import {CounterActions} from "../app.actions";
 
 describe('StickerComponent', () => {
   let component: StickerComponent;
@@ -18,13 +17,13 @@ describe('StickerComponent', () => {
     }
   }
   let mockNgZone = new MockNgZone() as NgZone;
-  let ngRedux;
+  let appStore;
   // *** end of Redux init ***
 
   beforeEach(async(() => {
     // *** 2. Reset to the intital state: ***
-    ngRedux = new NgRedux(mockNgZone);
-    ngRedux.configureStore(
+    appStore = new NgRedux(mockNgZone);
+    appStore.configureStore(
       rootReducer,
       INITIAL_STATE
     );
@@ -38,8 +37,7 @@ describe('StickerComponent', () => {
       declarations: [ StickerComponent ],
       providers: [
         // 3. Inject to the components:
-        { provide: NgRedux, useValue: ngRedux },
-        CounterActions
+        { provide: NgRedux, useValue: appStore }
       ]
     })
     .compileComponents();

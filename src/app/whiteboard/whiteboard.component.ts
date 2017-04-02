@@ -19,9 +19,7 @@ export class WhiteboardComponent implements OnInit {
   @select() readonly wbHeight$: Observable<number>;
   @select() readonly stickers$: Observable<Array<ISticker>>;
 
-  //constructor(private ngRedux: NgRedux<IAppState>,
-  //            private actions: CounterActions) { }
-  constructor(private ngRedux: NgRedux<IAppState>) {};
+  constructor(private store: NgRedux<IAppState>) {};
 
   ngOnInit() {
 
@@ -31,26 +29,26 @@ export class WhiteboardComponent implements OnInit {
 
   // *** WB Actions: ***
   heightPlus() {
-    this.ngRedux.dispatch(WhiteboardActions.increaseHeight(10));
+    this.store.dispatch(WhiteboardActions.increaseHeight(10));
   }
   heightMinus() {
-    this.ngRedux.dispatch(WhiteboardActions.increaseHeight(-10));
+    this.store.dispatch(WhiteboardActions.increaseHeight(-10));
   }
 
   widthPlus() {
-    this.ngRedux.dispatch(WhiteboardActions.increaseWidth(10));
+    this.store.dispatch(WhiteboardActions.increaseWidth(10));
   }
   widthMinus() {
-    this.ngRedux.dispatch(WhiteboardActions.increaseWidth(-10));
+    this.store.dispatch(WhiteboardActions.increaseWidth(-10));
   }
 
   // *** Sticker Actions: ***
   stickerSelected($event:{stID:number, pos:IPoint}){
-    this.ngRedux.dispatch(StickerActions.toggleSelected($event.stID, $event.pos));
+    this.store.dispatch(StickerActions.toggleSelected($event.stID, $event.pos));
   }
 
   stickerMove($event:{stID:number, delta:IPoint}) {
-    this.ngRedux.dispatch(StickerActions.move($event.stID, $event.delta));
+    this.store.dispatch(StickerActions.move($event.stID, $event.delta));
   }
 
 

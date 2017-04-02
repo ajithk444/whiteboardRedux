@@ -7,7 +7,6 @@ import { NgReduxModule, NgRedux } from '@angular-redux/store';
 
 import { AppComponent } from './app.component';
 import {IAppState, rootReducer, INITIAL_STATE} from "../store";
-import {CounterActions} from "./app.actions";
 import { WhiteboardComponent } from './whiteboard/whiteboard.component';
 import { StickerComponent } from './sticker/sticker.component';
 
@@ -26,14 +25,14 @@ import { StickerComponent } from './sticker/sticker.component';
     HttpModule,
     NgReduxModule
   ],
-  providers: [CounterActions],
+  providers: [],
   bootstrap: [AppComponent]
 })
 
 export class AppModule {
 
-  constructor(ngRedux: NgRedux<IAppState>) {
-    ngRedux.configureStore(
+  constructor(appStore: NgRedux<IAppState>) {
+    appStore.configureStore(
       rootReducer,
       INITIAL_STATE
     );

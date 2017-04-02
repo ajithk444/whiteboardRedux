@@ -1,5 +1,5 @@
 .stickerNote {
-  position: relative;
+  position: absolute;
   color: darkblue;
   background-color: greenyellow;
   border: solid 1px darkblue;

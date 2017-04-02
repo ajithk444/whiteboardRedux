@@ -1,4 +1,3 @@
-import {CounterActions} from "./app/app.actions";
 import {WhiteboardActions} from "./app/whiteboard/whiteboard.actions";
 import {StickerActions} from "./app/sticker/sticker.actions";
 import {ISticker} from "./app/sticker/sticker.interface";
@@ -11,7 +10,6 @@ export interface MyAction {
 
 
 export interface IAppState {
-  count: number;
 
   // Steering MouseHandling:
   mouseDown: IPoint;
@@ -28,7 +26,6 @@ export interface IAppState {
 }
 
 export const INITIAL_STATE: IAppState = {
-  count: 0,
 
   mouseDown: null,
 
@@ -65,13 +62,9 @@ export const INITIAL_STATE: IAppState = {
 export function rootReducer(lastState: IAppState, action: MyAction) {
   let result: any;
   switch(action.type) {
-    case CounterActions.INCREMENT:
-      return Object.assign({}, lastState, {count: lastState.count + 1});
-    case CounterActions.DECREMENT:
-      if( lastState.count > 0)
-        return Object.assign({}, lastState, {count: lastState.count - 1});
-    break;
-    // *** Whiteboard actions: **
+    // ***************************
+    // *** Whiteboard actions: ***
+    // ***************************
     case WhiteboardActions.WB_INCREASE_WIDTH:
       return Object.assign({}, lastState, {wbWidth: lastState.wbWidth + action.payload});
 
@@ -100,6 +93,18 @@ export function rootReducer(lastState: IAppState, action: MyAction) {
           stLeft: sticker.stLeft + action.payload.delta.x - lastState.mouseDown.x,
           stTop: sticker.stTop  + action.payload.delta.y - lastState.mouseDown.y
         };
+        // *** Limit move to the whiteboard: ***
+        help.stLeft = help.stLeft < 0 ? 0 : help.stLeft;
+        help.stLeft = help.stLeft + sticker.stWidth > lastState.wbWidth
+                        ? lastState.wbWidth - sticker.stWidth
+                        : help.stLeft;
+
+        help.stTop = help.stTop < 0 ? 0 : help.stTop;
+        help.stTop = help.stTop + sticker.stHeight > lastState.wbHeight
+                        ? lastState.wbHeight - sticker.stHeight
+                        : help.stTop;
+
+        console.log("help === " + JSON.stringify(help));
         return Object.assign({}, sticker, help);
       });
       return Object.assign({}, lastState, {stickers: result}, {mouseDown: action.payload.delta});
@@ -107,5 +112,5 @@ export function rootReducer(lastState: IAppState, action: MyAction) {
       return lastState;
   } // of switch(action.type).
   // Always return the current state for unkown actions!
-  return lastState;
+  //return lastState;
 }

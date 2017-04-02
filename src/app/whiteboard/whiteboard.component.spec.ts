@@ -4,7 +4,6 @@ import { WhiteboardComponent } from './whiteboard.component';
 import { NgRedux } from '@angular-redux/store';
 import {NgZone, CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
 import {rootReducer, INITIAL_STATE} from "../../store";
-import {CounterActions} from "../app.actions";
 
   let component: WhiteboardComponent;
   let fixture: ComponentFixture<WhiteboardComponent>;
@@ -16,14 +15,14 @@ import {CounterActions} from "../app.actions";
     }
   }
   let mockNgZone = new MockNgZone() as NgZone;
-  let ngRedux;
+  let appStore;
   // *** end of Redux init ***
 
 describe('WhiteboardComponent', () => {
   beforeEach(async(() => {
     // *** 2. Reset to the intital state: ***
-    ngRedux = new NgRedux(mockNgZone);
-    ngRedux.configureStore(
+    appStore = new NgRedux(mockNgZone);
+    appStore.configureStore(
       rootReducer,
       INITIAL_STATE
     );
@@ -35,8 +34,7 @@ describe('WhiteboardComponent', () => {
       declarations: [ WhiteboardComponent ],
       providers: [
         // 3. Inject to the components:
-        { provide: NgRedux, useValue: ngRedux },
-        CounterActions
+        { provide: NgRedux, useValue: appStore }
       ]
     })
     .compileComponents();

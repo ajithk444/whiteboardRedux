@@ -3,7 +3,6 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { NgRedux } from '@angular-redux/store';
-import {CounterActions} from "./app.actions";
 import {NgZone, CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
 import {rootReducer, INITIAL_STATE} from "../store";
 import {WhiteboardComponent} from "./whiteboard/whiteboard.component";
@@ -15,14 +14,14 @@ class MockNgZone {
   }
 }
 let mockNgZone = new MockNgZone() as NgZone;
-let ngRedux;
+let appStore;
 // *** end of Redux init ***
 
 describe('AppComponent', () => {
   beforeEach(() => {
     // *** 2. Reset to the intital state: ***
-    ngRedux = new NgRedux(mockNgZone);
-    ngRedux.configureStore(
+    appStore = new NgRedux(mockNgZone);
+    appStore.configureStore(
       rootReducer,
       INITIAL_STATE
     );
@@ -37,8 +36,7 @@ describe('AppComponent', () => {
       ],
       providers: [
         // 3. Inject to the components:
-        { provide: NgRedux, useValue: ngRedux },
-        CounterActions
+        { provide: NgRedux, useValue: appStore }
       ]
     });
 
