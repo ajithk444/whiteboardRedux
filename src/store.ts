@@ -2,6 +2,7 @@ import {WhiteboardActions} from "./app/whiteboard/whiteboard.actions";
 import {StickerActions} from "./app/sticker/sticker.actions";
 import {ISticker} from "./app/sticker/sticker.interface";
 import {IPoint} from "./app/helpers/point.interface";
+import {forEach} from "@angular/router/src/utils/collection";
 
 export interface MyAction {
   type: string,
@@ -71,6 +72,21 @@ export function rootReducer(lastState: IAppState, action: MyAction) {
     case WhiteboardActions.WB_INCREASE_HEIGTH:
       return Object.assign({}, lastState, {wbHeight: lastState.wbHeight + action.payload});
 
+    case WhiteboardActions.WB_ADD_NEW_STICKER:
+        let newStId = 0;
+        lastState.stickers.forEach(st => newStId = newStId < st.stID ? st.stID : newStId);
+        newStId++;
+        let s:ISticker = {
+          stID: newStId,
+          stSelected: false,
+          stTitle: "Sticker " + newStId,
+          stLeft: 10,
+          stTop: 10,
+          stWidth: 200,
+          stHeight: 100,
+          stText: "Here we go! :-)"
+        }
+      return Object.assign({}, lastState, {stickers: [...lastState.stickers, s]});
     // ************************
     // *** Sticker actions: ***
     // ************************

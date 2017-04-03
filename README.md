@@ -29,3 +29,19 @@ Run `ng github-pages:deploy` to deploy to GitHub Pages.
 ## Further help
 
 To get more help on the `angular-cli` use `ng help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Notes MEL:
+https://github.com/angular-redux/store/blob/master/docs/intro-tutorial.md
+http://onehungrymind.com/build-better-angular-2-application-redux-ngrx/
+
+
+## ToDo MEL:
+OK - Add Sticker
+ToDo - Fix StickerComponent Test
+ToDo - Delete Sticker as X Button on Sticker
+ToDo - Edit Sticker bei Edit Button on Sticker
+ToDo - Save Information on Firebase
+
+
+
+
