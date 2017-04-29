@@ -36,11 +36,12 @@ http://onehungrymind.com/build-better-angular-2-application-redux-ngrx/
 
 
 ## ToDo MEL:
-OK - Add Sticker
-ToDo - Fix StickerComponent Test
-ToDo - Delete Sticker as X Button on Sticker
-ToDo - Edit Sticker bei Edit Button on Sticker
-ToDo - Save Information on Firebase
+* OK - Add Sticker
+* OK - Fix StickerComponent Test (see http://stackoverflow.com/questions/36654834/angular2-unit-test-with-input)
+* ToDo - Ensure code coverage with Istanbul
+* ToDo - Delete Sticker as X Button on Sticker
+* ToDo - Edit Sticker bei Edit Button on Sticker
+* ToDo - Save Information on Firebase
 
 
 

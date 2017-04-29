@@ -6,6 +6,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgZone} from '@angular/core';
 
 import { StickerComponent } from './sticker.component';
 import {INITIAL_STATE, rootReducer} from "../../store";
+import {ISticker} from "./sticker.interface";
 
 describe('StickerComponent', () => {
   let component: StickerComponent;
@@ -38,6 +39,7 @@ describe('StickerComponent', () => {
       providers: [
         // 3. Inject to the components:
         { provide: NgRedux, useValue: appStore }
+        //{ provide: ISticker, useValue: sticker}
       ]
     })
     .compileComponents();
@@ -46,6 +48,7 @@ describe('StickerComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(StickerComponent);
     component = fixture.componentInstance;
+    component.sticker = INITIAL_STATE.stickers[0];
     fixture.detectChanges();
   });
 
