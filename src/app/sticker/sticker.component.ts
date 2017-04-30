@@ -2,9 +2,7 @@
 import {Component, OnInit, Input, HostListener, EventEmitter, Output} from '@angular/core';
 import {ISticker} from "./sticker.interface";
 import {IPoint} from "../helpers/point.interface";
-import {NgRedux} from "@angular-redux/store";
-import {IAppState} from "../../store";
-//import {StickerActions} from "./sticker.actions";
+
 @Component({
   selector: 'ellzap-sticker',
   templateUrl: './sticker.component.html',
@@ -13,7 +11,7 @@ import {IAppState} from "../../store";
 export class StickerComponent implements OnInit {
 
   @Input() sticker: ISticker;
-  @Output() selected: EventEmitter<{stID: number, pos:IPoint}> = new EventEmitter<{stID: number}>();
+  @Output() selected: EventEmitter<{stID: number, pos: IPoint}> = new EventEmitter<{stID: number, pos: IPoint}>();
   @Output() movement: EventEmitter<{stID: number, delta: IPoint}> = new EventEmitter<{stID: number, delta: IPoint}>();
 
   @HostListener('mousedown', ['$event'])  onMouseDown(event: any) {
@@ -29,7 +27,7 @@ export class StickerComponent implements OnInit {
     }
   }; // of @HostListener('mousedown', ['$event']) onMouseDown(event: any).
 
-  @HostListener('mouseup', ['$event']) onMouseUp = (event: any) => {
+  @HostListener('mouseup', ['$event']) onMouseUp = () => {
     if (this.sticker.stSelected) {
       this.selected.emit({stID: this.sticker.stID, pos:null});
     }
@@ -37,16 +35,16 @@ export class StickerComponent implements OnInit {
 
   @HostListener('mousemove', ['$event']) onMouseMove(event: any) {
     if (this.sticker.stSelected) {
-      const delta = {
+      const pos = {
         x: event.clientX,
         y: event.clientY,
       };
-      this.movement.emit({stID: this.sticker.stID, delta: delta})
+      this.movement.emit({stID: this.sticker.stID, pos: pos})
     }
   } // of @HostListener('mousemouve', ['$event']) onMouseMove(event: any).
 
-  constructor(private ngRedux: NgRedux<IAppState>) {}
-  //constructor() {}
+  //constructor(private ngRedux: NgRedux<IAppState>) {}
+  constructor() {}
 
   ngOnInit() {
     //console.log("Im here :-)");

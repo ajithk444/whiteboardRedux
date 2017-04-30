@@ -39,6 +39,8 @@ http://onehungrymind.com/build-better-angular-2-application-redux-ngrx/
 * OK - Add Sticker
 * OK - Fix StickerComponent Test (see http://stackoverflow.com/questions/36654834/angular2-unit-test-with-input)
 * ToDo - Ensure code coverage with Istanbul
+ Notes: https://github.com/angular-redux/store/blob/master/docs/intro-tutorial.md#unit-testing-selections
+ 
 * ToDo - Delete Sticker as X Button on Sticker
 * ToDo - Edit Sticker bei Edit Button on Sticker
 * ToDo - Save Information on Firebase

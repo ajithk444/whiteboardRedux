@@ -1,3 +1,4 @@
+/* tslint:disable:no-unused-variable */
 import {Component, OnInit} from '@angular/core';
 import {select, NgRedux} from "@angular-redux/store";
 import {Observable} from "rxjs";
@@ -52,7 +53,7 @@ export class WhiteboardComponent implements OnInit {
   }
 
   stickerMove($event:{stID:number, delta:IPoint}) {
-    this.store.dispatch(StickerActions.move($event.stID, $event.delta));
+    this.store.dispatch(StickerActions.move($event.stID, $event.pos));
   }
 
 
