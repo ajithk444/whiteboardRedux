@@ -6,7 +6,14 @@
   padding: 3px;
 }
 .stickerTop{
+  position: relative;
   background-color: darkblue;
   color:ghostwhite;
   padding: 1px;
+}
+.stickerToolbar{
+  position: relative;
+  background-color: yellow;
+  color:ghostwhite;
+  padding: 2px;
 }

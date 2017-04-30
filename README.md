@@ -38,10 +38,13 @@ http://onehungrymind.com/build-better-angular-2-application-redux-ngrx/
 ## ToDo MEL:
 * OK - Add Sticker
 * OK - Fix StickerComponent Test (see http://stackoverflow.com/questions/36654834/angular2-unit-test-with-input)
-* ToDo - Ensure code coverage with Istanbul
- Notes: https://github.com/angular-redux/store/blob/master/docs/intro-tutorial.md#unit-testing-selections
- 
-* ToDo - Delete Sticker as X Button on Sticker
+* OK - Ensure code coverage with Istanbul
+ Notes: 
+  - https://github.com/angular-redux/store/blob/master/docs/intro-tutorial.md#unit-testing-selections
+  - https://angular.io/docs/ts/latest/guide/testing.html
+* ok - Delete Sticker as X Button on Sticker
+  - Images/Icons from http://www.flaticon.com/packs/system-icons-set
+ Had some trouble because of the mousedown handler. This blocks click events on buttons.
 * ToDo - Edit Sticker bei Edit Button on Sticker
 * ToDo - Save Information on Firebase
 

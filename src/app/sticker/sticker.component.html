@@ -3,7 +3,18 @@
      [style.left]="sticker.stLeft + 'px'"
      [style.width]="sticker.stWidth + 'px'"
      [style.height]="sticker.stHeight + 'px'"
-     >
-  <div class="stickerTop">{{sticker.stTitle}}</div>
-  {{sticker.stText}}
+>
+  <div class="stickerTop" (mousedown)="onMouseDown($event)">
+    {{sticker.stTitle}}
+  </div>
+  <div class="stickerToolbar">
+
+    <img src="../../assets/garbage.png" height="20" width="20" (click)="onDeleteClick()"/>
+    <!--button on-click="onDeleteClick()">
+      Delete
+    </button -->
+  </div>
+  <div (mousedown)="onMouseDown($event)">
+    {{sticker.stText}}
+  </div>
 </div>

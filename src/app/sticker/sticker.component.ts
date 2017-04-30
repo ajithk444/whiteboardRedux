@@ -12,9 +12,13 @@ export class StickerComponent implements OnInit {
 
   @Input() sticker: ISticker;
   @Output() selected: EventEmitter<{stID: number, pos: IPoint}> = new EventEmitter<{stID: number, pos: IPoint}>();
-  @Output() movement: EventEmitter<{stID: number, delta: IPoint}> = new EventEmitter<{stID: number, delta: IPoint}>();
+  @Output() movement: EventEmitter<{stID: number, pos: IPoint}> = new EventEmitter<{stID: number, pos: IPoint}>();
+  @Output() deleteMe: EventEmitter<{stID: number}> = new EventEmitter<{stID: number}>();
 
-  @HostListener('mousedown', ['$event'])  onMouseDown(event: any) {
+  //@HostListener('mousedown', ['$event'])  onMouseDown(event: any) {
+  // WorkARound: The mousedown event is blocking the click-event we need for the toolbar!
+  // So I set this event on the other parts exect the toolbar directly!
+  onMouseDown(event: any) {
     if (!(this.sticker.stSelected)) {
       //console.log(JSON.stringify(event));
       const pos: IPoint = {
@@ -25,12 +29,17 @@ export class StickerComponent implements OnInit {
       this.selected.emit({stID: this.sticker.stID, pos: pos});
       //this.sendSelected(this.sticker.stID);
     }
+    return false;
   }; // of @HostListener('mousedown', ['$event']) onMouseDown(event: any).
 
-  @HostListener('mouseup', ['$event']) onMouseUp = () => {
+  @HostListener('mouseup', ['$event']) onMouseUp() {
+    //console.log(JSON.stringify(event));
     if (this.sticker.stSelected) {
-      this.selected.emit({stID: this.sticker.stID, pos:null});
+      this.selected.emit({stID: this.sticker.stID, pos:null})
+      ;
     }
+    return false;
+    //event.propagate();
   }; // of @HostListener('mouseup', ['$event']) onMouseUp(event: any).
 
   @HostListener('mousemove', ['$event']) onMouseMove(event: any) {
@@ -43,7 +52,12 @@ export class StickerComponent implements OnInit {
     }
   } // of @HostListener('mousemouve', ['$event']) onMouseMove(event: any).
 
-  //constructor(private ngRedux: NgRedux<IAppState>) {}
+  // Toolbar actions
+  onDeleteClick() {
+    //console.log("*** Deleted clicked on stID " + this.sticker.stID);
+    this.deleteMe.emit({stID: this.sticker.stID});
+  }
+
   constructor() {}
 
   ngOnInit() {

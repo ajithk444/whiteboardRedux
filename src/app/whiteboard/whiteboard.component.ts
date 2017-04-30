@@ -47,15 +47,17 @@ export class WhiteboardComponent implements OnInit {
     this.store.dispatch(WhiteboardActions.addNewSticker());
   }
 
-
-  stickerSelected($event:{stID:number, pos:IPoint}){
+  stickerSelected($event:{stID: number, pos: IPoint}){
     this.store.dispatch(StickerActions.toggleSelected($event.stID, $event.pos));
   }
 
-  stickerMove($event:{stID:number, delta:IPoint}) {
+  stickerMove($event:{stID: number, pos: IPoint}) {
     this.store.dispatch(StickerActions.move($event.stID, $event.pos));
   }
 
+  stickerDelete($event:{stID: number}) {
+    this.store.dispatch(StickerActions.del($event.stID));
+  }
 
 
 }

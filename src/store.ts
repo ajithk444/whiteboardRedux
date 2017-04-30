@@ -2,7 +2,6 @@ import {WhiteboardActions} from "./app/whiteboard/whiteboard.actions";
 import {StickerActions} from "./app/sticker/sticker.actions";
 import {ISticker} from "./app/sticker/sticker.interface";
 import {IPoint} from "./app/helpers/point.interface";
-import {forEach} from "@angular/router/src/utils/collection";
 
 export interface MyAction {
   type: string,
@@ -85,7 +84,7 @@ export function rootReducer(lastState: IAppState, action: MyAction) {
           stWidth: 200,
           stHeight: 100,
           stText: "Here we go! :-)"
-        }
+        };
       return Object.assign({}, lastState, {stickers: [...lastState.stickers, s]});
     // ************************
     // *** Sticker actions: ***
@@ -120,10 +119,13 @@ export function rootReducer(lastState: IAppState, action: MyAction) {
                         ? lastState.wbHeight - sticker.stHeight
                         : help.stTop;
 
-        console.log("help === " + JSON.stringify(help));
+        //console.log("help === " + JSON.stringify(help));
         return Object.assign({}, sticker, help);
       });
       return Object.assign({}, lastState, {stickers: result}, {mouseDown: action.payload.delta});
+    case StickerActions.ST_DELETE:
+      result = lastState.stickers.filter((sticker:ISticker) => {return (sticker.stID !== action.payload.stID);});
+      return Object.assign({}, lastState, {stickers: result});
     default:
       return lastState;
   } // of switch(action.type).
