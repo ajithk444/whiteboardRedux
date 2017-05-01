@@ -6,6 +6,7 @@ import { NgRedux } from '@angular-redux/store';
 import {NgZone, CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
 import {rootReducer, INITIAL_STATE} from "../store";
 import {WhiteboardComponent} from "./whiteboard/whiteboard.component";
+import {StickerService} from "./sticker/sticker.service";
 
 // *** 1. Redux initialize: ***
 class MockNgZone {
@@ -36,7 +37,8 @@ describe('AppComponent', () => {
       ],
       providers: [
         // 3. Inject to the components:
-        { provide: NgRedux, useValue: appStore }
+        { provide: NgRedux, useValue: appStore },
+        StickerService
       ]
     });
 

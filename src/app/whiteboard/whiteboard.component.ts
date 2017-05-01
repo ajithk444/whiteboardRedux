@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 import {WhiteboardActions} from "./whiteboard.actions";
 import {IAppState, MyAction} from "../../store";
 import {ISticker} from "../sticker/sticker.interface";
+import {StickerService} from "../sticker/sticker.service";
 
 @Component({
   selector: 'ellzap-whiteboard',
@@ -17,7 +18,7 @@ export class WhiteboardComponent implements OnInit {
   @select() readonly wbHeight$: Observable<number>;
   @select() readonly stickers$: Observable<Array<ISticker>>;
 
-  constructor(private store: NgRedux<IAppState>) {};
+  constructor(private store: NgRedux<IAppState>, private stickerService: StickerService) {};
 
   ngOnInit() {
 
@@ -42,11 +43,11 @@ export class WhiteboardComponent implements OnInit {
 
   // *** Sticker Actions: ***
   addNewSticker() {
-    this.store.dispatch(WhiteboardActions.addNewSticker());
+    this.stickerService.newSticker();
   }
 
   stickerAction(myAction: MyAction) {
-    this.store.dispatch(myAction);
+    this.stickerService.action(myAction);
   }
 
 }

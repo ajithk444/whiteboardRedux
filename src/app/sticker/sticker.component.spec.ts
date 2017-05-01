@@ -1,5 +1,6 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { StickerComponent } from './sticker.component';
 import { ISticker} from "./sticker.interface";
@@ -16,6 +17,9 @@ describe('StickerComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [StickerComponent], // declare the test component
+      imports: [
+        FormsModule,
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(StickerComponent);
@@ -25,6 +29,7 @@ describe('StickerComponent', () => {
     testSticker = {
       stID: 1,
       stSelected: false,
+      stEditable: false,
       stTitle: 'Hugo - Test',
       stLeft: 10,
       stTop: 20,

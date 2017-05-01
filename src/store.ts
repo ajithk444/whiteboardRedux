@@ -35,30 +35,7 @@ export const INITIAL_STATE: IAppState = {
 
   wbHeight: 300,
   // End of Whiteboard
-  stickers: [
-    {
-      stID: 1,
-      stSelected: false,
-      stEditable: false,
-      stTitle: "Sticker 1",
-      stLeft: 10,
-      stTop: 10,
-      stWidth: 200,
-      stHeight: 100,
-      stText: "Here we go! :-)"
-    },
-    {
-      stID: 2,
-      stSelected: false,
-      stEditable: false,
-      stTitle: "Sticker 2",
-      stLeft: 100,
-      stTop: 40,
-      stWidth: 200,
-      stHeight: 100,
-      stText: "Here we go 2! :-)"
-    }
-  ],
+  stickers: [],
 };
 
 export function rootReducer(lastState: IAppState, action: MyAction) {
@@ -73,25 +50,12 @@ export function rootReducer(lastState: IAppState, action: MyAction) {
     case WhiteboardActions.WB_INCREASE_HEIGTH:
       return Object.assign({}, lastState, {wbHeight: lastState.wbHeight + action.payload});
 
-    case WhiteboardActions.WB_ADD_NEW_STICKER:
-        let newStId = 0;
-        lastState.stickers.forEach(st => newStId = newStId < st.stID ? st.stID : newStId);
-        newStId++;
-        let s:ISticker = {
-          stID: newStId,
-          stSelected: false,
-          stEditable: false,
-          stTitle: "Sticker " + newStId,
-          stLeft: 10,
-          stTop: 10,
-          stWidth: 200,
-          stHeight: 100,
-          stText: "Here we go! :-)"
-        };
-      return Object.assign({}, lastState, {stickers: [...lastState.stickers, s]});
     // ************************
     // *** Sticker actions: ***
     // ************************
+    case StickerActions.ST_ADD_STICKER:
+      return Object.assign({}, lastState, {stickers: [...lastState.stickers, action.payload]});
+
     case StickerActions.ST_TOGGLE_SELECTED:
       //console.log("toggleSelected " + JSON.stringify(action.payload));
       result = lastState.stickers.map((sticker:ISticker) => {

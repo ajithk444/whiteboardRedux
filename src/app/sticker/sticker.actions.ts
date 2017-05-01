@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import {MyAction} from "../../store";
 import {IPoint} from "../helpers/point.interface";
+import {ISticker} from "./sticker.interface";
 
 @Injectable()
 export class StickerActions {
@@ -10,6 +11,7 @@ export class StickerActions {
   static ST_EDIT = "ST_EDIT";
   static ST_CANCEL_EDIT = "ST_CANCEL_EDIT";
   static ST_SAVE_EDIT = "ST_SAVE_EDIT";
+  static ST_ADD_STICKER = "ST_ADD_STICKER";
 
   static toggleSelected(stID: number, pos: IPoint): MyAction {
     return {type: this.ST_TOGGLE_SELECTED, payload: {stID: stID, pos: pos}};
@@ -35,5 +37,9 @@ export class StickerActions {
 
   static save(stID: number, newText: String): MyAction {
     return {type: this.ST_SAVE_EDIT, payload: {stID: stID, newText: newText}};
+  }
+
+  static addSticker(sticker: ISticker) {
+    return {type: this.ST_ADD_STICKER, payload: sticker};
   }
 }

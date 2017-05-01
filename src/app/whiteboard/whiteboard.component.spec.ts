@@ -4,6 +4,7 @@ import { WhiteboardComponent } from './whiteboard.component';
 import { NgRedux } from '@angular-redux/store';
 import {NgZone, CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
 import {rootReducer, INITIAL_STATE} from "../../store";
+import {StickerService} from "../sticker/sticker.service";
 
   let component: WhiteboardComponent;
   let fixture: ComponentFixture<WhiteboardComponent>;
@@ -34,7 +35,8 @@ describe('WhiteboardComponent', () => {
       declarations: [ WhiteboardComponent ],
       providers: [
         // 3. Inject to the components:
-        { provide: NgRedux, useValue: appStore }
+        { provide: NgRedux, useValue: appStore },
+        StickerService
       ]
     })
     .compileComponents();
