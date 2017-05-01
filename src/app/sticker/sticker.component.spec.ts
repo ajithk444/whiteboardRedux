@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 import { StickerComponent } from './sticker.component';
 import { ISticker} from "./sticker.interface";
 import {IPoint} from "../helpers/point.interface";
+import {MyAction} from "../../store";
 
 describe('StickerComponent', () => {
   let component: StickerComponent;
@@ -45,9 +46,9 @@ describe('StickerComponent', () => {
   it('StickerComponent Event <mousedown> should work correct', () => {
     let pos: IPoint = null;
     let stID: number = -1;
-    component.selected.subscribe((event) => {
-      stID = event.stID;
-      pos = event.pos;
+    component.myAction.subscribe((event:MyAction) => {
+      stID = event.payload.stID;
+      pos = event.payload.pos;
     });
     component.onMouseDown({clientX: 10, clientY: 20});
     expect(stID).toBe(testSticker.stID);
@@ -58,9 +59,9 @@ describe('StickerComponent', () => {
   it('StickerComponent Event <mouseup> should work correct', () => {
     let pos: IPoint = null;
     let stID: number = -1;
-    component.selected.subscribe((event) => {
-      stID = event.stID;
-      pos = event.pos;
+    component.myAction.subscribe((event) => {
+      stID = event.payload.stID;
+      pos = event.payload.pos;
     });
     component.sticker.stSelected = true;
     fixture.detectChanges();
@@ -73,9 +74,9 @@ describe('StickerComponent', () => {
   it('StickerComponent Event <mouseMove> should work correct', () => {
     let pos: IPoint = null;
     let stID: number = -1;
-    component.movement.subscribe((event) => {
-      stID = event.stID;
-      pos = event.pos;
+    component.myAction.subscribe((event) => {
+      stID = event.payload.stID;
+      pos = event.payload.pos;
     });
     component.sticker.stSelected = true;
     fixture.detectChanges();

@@ -9,10 +9,8 @@
   </div>
   <div class="stickerToolbar">
 
-    <img src="../../assets/garbage.png" height="20" width="20" (click)="onDeleteClick()"/>
-    <!--button on-click="onDeleteClick()">
-      Delete
-    </button -->
+    <img src="../../assets/garbage.png" alt="Delete" height="20" width="20" (click)="onDeleteClick()"/>
+    <img src="../../assets/pencil.png" alt="Edit" height="20" width="20" (click)="onEditClick()"/>
   </div>
   <div (mousedown)="onMouseDown($event)">
     {{sticker.stText}}

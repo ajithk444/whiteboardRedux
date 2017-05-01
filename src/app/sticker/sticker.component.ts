@@ -2,6 +2,8 @@
 import {Component, OnInit, Input, HostListener, EventEmitter, Output} from '@angular/core';
 import {ISticker} from "./sticker.interface";
 import {IPoint} from "../helpers/point.interface";
+import {MyAction} from "../../store";
+import {StickerActions} from "./sticker.actions";
 
 @Component({
   selector: 'ellzap-sticker',
@@ -11,9 +13,7 @@ import {IPoint} from "../helpers/point.interface";
 export class StickerComponent implements OnInit {
 
   @Input() sticker: ISticker;
-  @Output() selected: EventEmitter<{stID: number, pos: IPoint}> = new EventEmitter<{stID: number, pos: IPoint}>();
-  @Output() movement: EventEmitter<{stID: number, pos: IPoint}> = new EventEmitter<{stID: number, pos: IPoint}>();
-  @Output() deleteMe: EventEmitter<{stID: number}> = new EventEmitter<{stID: number}>();
+  @Output() myAction: EventEmitter<MyAction> = new EventEmitter<MyAction>();
 
   //@HostListener('mousedown', ['$event'])  onMouseDown(event: any) {
   // WorkARound: The mousedown event is blocking the click-event we need for the toolbar!
@@ -26,20 +26,15 @@ export class StickerComponent implements OnInit {
         y: event.clientY,
       };
       // !!! this emit kills the scope of this and result in no chances to the component !!!
-      this.selected.emit({stID: this.sticker.stID, pos: pos});
-      //this.sendSelected(this.sticker.stID);
+      this.myAction.emit(StickerActions.toggleSelected(this.sticker.stID, pos));
     }
-    return false;
   }; // of @HostListener('mousedown', ['$event']) onMouseDown(event: any).
 
   @HostListener('mouseup', ['$event']) onMouseUp() {
     //console.log(JSON.stringify(event));
     if (this.sticker.stSelected) {
-      this.selected.emit({stID: this.sticker.stID, pos:null})
-      ;
+      this.myAction.emit(StickerActions.toggleSelected(this.sticker.stID, null));
     }
-    return false;
-    //event.propagate();
   }; // of @HostListener('mouseup', ['$event']) onMouseUp(event: any).
 
   @HostListener('mousemove', ['$event']) onMouseMove(event: any) {
@@ -48,20 +43,24 @@ export class StickerComponent implements OnInit {
         x: event.clientX,
         y: event.clientY,
       };
-      this.movement.emit({stID: this.sticker.stID, pos: pos})
+      this.myAction.emit(StickerActions.move(this.sticker.stID, pos));
     }
   } // of @HostListener('mousemouve', ['$event']) onMouseMove(event: any).
 
   // Toolbar actions
   onDeleteClick() {
-    //console.log("*** Deleted clicked on stID " + this.sticker.stID);
-    this.deleteMe.emit({stID: this.sticker.stID});
+    this.myAction.emit(StickerActions.del(this.sticker.stID));
+  }
+
+  onEditClick() {
+    console.log("OnEditClick()");
+    this.myAction.emit(StickerActions.edit(this.sticker.stID));
   }
 
   constructor() {}
 
   ngOnInit() {
-    //console.log("Im here :-)");
+    console.log("Im here :-)");
 
   }
 }

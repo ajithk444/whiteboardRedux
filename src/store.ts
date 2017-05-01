@@ -39,6 +39,7 @@ export const INITIAL_STATE: IAppState = {
     {
       stID: 1,
       stSelected: false,
+      stEditable: false,
       stTitle: "Sticker 1",
       stLeft: 10,
       stTop: 10,
@@ -49,6 +50,7 @@ export const INITIAL_STATE: IAppState = {
     {
       stID: 2,
       stSelected: false,
+      stEditable: false,
       stTitle: "Sticker 2",
       stLeft: 100,
       stTop: 40,
@@ -78,6 +80,7 @@ export function rootReducer(lastState: IAppState, action: MyAction) {
         let s:ISticker = {
           stID: newStId,
           stSelected: false,
+          stEditable: false,
           stTitle: "Sticker " + newStId,
           stLeft: 10,
           stTop: 10,
@@ -105,8 +108,8 @@ export function rootReducer(lastState: IAppState, action: MyAction) {
           return sticker;
         }
         let help = {
-          stLeft: sticker.stLeft + action.payload.delta.x - lastState.mouseDown.x,
-          stTop: sticker.stTop  + action.payload.delta.y - lastState.mouseDown.y
+          stLeft: sticker.stLeft + action.payload.pos.x - lastState.mouseDown.x,
+          stTop: sticker.stTop  + action.payload.pos.y - lastState.mouseDown.y
         };
         // *** Limit move to the whiteboard: ***
         help.stLeft = help.stLeft < 0 ? 0 : help.stLeft;
@@ -122,9 +125,16 @@ export function rootReducer(lastState: IAppState, action: MyAction) {
         //console.log("help === " + JSON.stringify(help));
         return Object.assign({}, sticker, help);
       });
-      return Object.assign({}, lastState, {stickers: result}, {mouseDown: action.payload.delta});
+      return Object.assign({}, lastState, {stickers: result}, {mouseDown: action.payload.pos});
     case StickerActions.ST_DELETE:
       result = lastState.stickers.filter((sticker:ISticker) => {return (sticker.stID !== action.payload.stID);});
+      return Object.assign({}, lastState, {stickers: result});
+    case StickerActions.ST_EDIT:
+      result = lastState.stickers.map((sticker:ISticker) => {
+        return (sticker.stID === action.payload.stID)
+          ? Object.assign({}, sticker, {stEditable: true})
+          : sticker;
+      });
       return Object.assign({}, lastState, {stickers: result});
     default:
       return lastState;

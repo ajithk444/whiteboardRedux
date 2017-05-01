@@ -3,10 +3,8 @@ import {Component, OnInit} from '@angular/core';
 import {select, NgRedux} from "@angular-redux/store";
 import {Observable} from "rxjs";
 import {WhiteboardActions} from "./whiteboard.actions";
-import {IAppState} from "../../store";
-import {StickerActions} from "../sticker/sticker.actions";
+import {IAppState, MyAction} from "../../store";
 import {ISticker} from "../sticker/sticker.interface";
-import {IPoint} from "../helpers/point.interface";
 
 @Component({
   selector: 'ellzap-whiteboard',
@@ -47,17 +45,8 @@ export class WhiteboardComponent implements OnInit {
     this.store.dispatch(WhiteboardActions.addNewSticker());
   }
 
-  stickerSelected($event:{stID: number, pos: IPoint}){
-    this.store.dispatch(StickerActions.toggleSelected($event.stID, $event.pos));
+  stickerAction(myAction: MyAction) {
+    this.store.dispatch(myAction);
   }
-
-  stickerMove($event:{stID: number, pos: IPoint}) {
-    this.store.dispatch(StickerActions.move($event.stID, $event.pos));
-  }
-
-  stickerDelete($event:{stID: number}) {
-    this.store.dispatch(StickerActions.del($event.stID));
-  }
-
 
 }
