@@ -8,6 +8,8 @@ export class StickerActions {
   static ST_MOVE = "ST_MOVE";
   static ST_DELETE = "ST_DELETE";
   static ST_EDIT = "ST_EDIT";
+  static ST_CANCEL_EDIT = "ST_CANCEL_EDIT";
+  static ST_SAVE_EDIT = "ST_SAVE_EDIT";
 
   static toggleSelected(stID: number, pos: IPoint): MyAction {
     return {type: this.ST_TOGGLE_SELECTED, payload: {stID: stID, pos: pos}};
@@ -27,4 +29,11 @@ export class StickerActions {
     return {type: this.ST_EDIT, payload: {stID: stID}};
   }
 
+  static cancelEdit(stID: number): MyAction {
+    return {type: this.ST_CANCEL_EDIT, payload: {stID: stID}};
+  }
+
+  static save(stID: number, newText: String): MyAction {
+    return {type: this.ST_SAVE_EDIT, payload: {stID: stID, newText: newText}};
+  }
 }

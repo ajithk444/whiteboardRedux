@@ -126,9 +126,11 @@ export function rootReducer(lastState: IAppState, action: MyAction) {
         return Object.assign({}, sticker, help);
       });
       return Object.assign({}, lastState, {stickers: result}, {mouseDown: action.payload.pos});
-    case StickerActions.ST_DELETE:
+
+      case StickerActions.ST_DELETE:
       result = lastState.stickers.filter((sticker:ISticker) => {return (sticker.stID !== action.payload.stID);});
       return Object.assign({}, lastState, {stickers: result});
+
     case StickerActions.ST_EDIT:
       result = lastState.stickers.map((sticker:ISticker) => {
         return (sticker.stID === action.payload.stID)
@@ -136,6 +138,23 @@ export function rootReducer(lastState: IAppState, action: MyAction) {
           : sticker;
       });
       return Object.assign({}, lastState, {stickers: result});
+
+    case StickerActions.ST_CANCEL_EDIT:
+      result = lastState.stickers.map((sticker:ISticker) => {
+        return (sticker.stID === action.payload.stID)
+          ? Object.assign({}, sticker, {stEditable: false})
+          : sticker;
+      });
+      return Object.assign({}, lastState, {stickers: result});
+
+    case StickerActions.ST_SAVE_EDIT:
+      result = lastState.stickers.map((sticker:ISticker) => {
+        return (sticker.stID === action.payload.stID)
+          ? Object.assign({}, sticker, {stEditable: false, stText: action.payload.newText})
+          : sticker;
+      });
+      return Object.assign({}, lastState, {stickers: result});
+
     default:
       return lastState;
   } // of switch(action.type).

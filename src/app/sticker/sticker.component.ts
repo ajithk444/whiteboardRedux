@@ -15,6 +15,8 @@ export class StickerComponent implements OnInit {
   @Input() sticker: ISticker;
   @Output() myAction: EventEmitter<MyAction> = new EventEmitter<MyAction>();
 
+  newText: String = "Hugo";
+
   //@HostListener('mousedown', ['$event'])  onMouseDown(event: any) {
   // WorkARound: The mousedown event is blocking the click-event we need for the toolbar!
   // So I set this event on the other parts exect the toolbar directly!
@@ -53,8 +55,18 @@ export class StickerComponent implements OnInit {
   }
 
   onEditClick() {
-    console.log("OnEditClick()");
+    console.log("onEditClick()");
     this.myAction.emit(StickerActions.edit(this.sticker.stID));
+  }
+
+  onCancelEdit() {
+    console.log("onCancelEdit()");
+    this.myAction.emit(StickerActions.cancelEdit(this.sticker.stID));
+  }
+
+  onSaveEdit() {
+    console.log("onSaveEdit()");
+    this.myAction.emit(StickerActions.save(this.sticker.stID, this.newText));
   }
 
   constructor() {}

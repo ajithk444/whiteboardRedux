@@ -10,9 +10,18 @@
   <div class="stickerToolbar">
 
     <img src="../../assets/garbage.png" alt="Delete" height="20" width="20" (click)="onDeleteClick()"/>
-    <img src="../../assets/pencil.png" alt="Edit" height="20" width="20" (click)="onEditClick()"/>
+    <span *ngIf="!sticker.stEditable">
+      <img src="../../assets/pencil.png" alt="Edit" height="20" width="20" (click)="onEditClick()"/>
+    </span>
+    <span *ngIf="sticker.stEditable">
+      <img src="../../assets/stop.png" alt="Cancel" height="20" width="20" (click)="onCancelEdit()"/>
+      <img src="../../assets/upload-to-cloud.png" alt="Save" height="20" width="20" (click)="onSaveEdit()"/>
+    </span>
   </div>
-  <div (mousedown)="onMouseDown($event)">
+  <div *ngIf="!sticker.stEditable" (mousedown)="onMouseDown($event)">
     {{sticker.stText}}
+  </div>
+  <div *ngIf="sticker.stEditable" (mousedown)="onMouseDown($event)">
+    {{newText}}
   </div>
 </div>
