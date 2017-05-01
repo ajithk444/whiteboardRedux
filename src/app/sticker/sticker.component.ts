@@ -14,8 +14,7 @@ export class StickerComponent implements OnInit {
 
   @Input() sticker: ISticker;
   @Output() myAction: EventEmitter<MyAction> = new EventEmitter<MyAction>();
-
-  newText: String = "Hugo";
+  newText: String;
 
   //@HostListener('mousedown', ['$event'])  onMouseDown(event: any) {
   // WorkARound: The mousedown event is blocking the click-event we need for the toolbar!
@@ -55,25 +54,26 @@ export class StickerComponent implements OnInit {
   }
 
   onEditClick() {
-    console.log("onEditClick()");
+    //console.log("onEditClick()");
+    this.newText = this.sticker.stText;
     this.myAction.emit(StickerActions.edit(this.sticker.stID));
   }
 
   onCancelEdit() {
-    console.log("onCancelEdit()");
+    //console.log("onCancelEdit()");
     this.myAction.emit(StickerActions.cancelEdit(this.sticker.stID));
   }
 
   onSaveEdit() {
-    console.log("onSaveEdit()");
+    //console.log("onSaveEdit()");
     this.myAction.emit(StickerActions.save(this.sticker.stID, this.newText));
   }
 
   constructor() {}
 
   ngOnInit() {
-    console.log("Im here :-)");
-
+    //console.log("Im here :-)");
+    this.newText = this.sticker.stText;
   }
 }
 

@@ -3,7 +3,7 @@
      [style.left]="sticker.stLeft + 'px'"
      [style.width]="sticker.stWidth + 'px'"
      [style.height]="sticker.stHeight + 'px'"
->
+     xmlns="http://www.w3.org/1999/html">
   <div class="stickerTop" (mousedown)="onMouseDown($event)">
     {{sticker.stTitle}}
   </div>
@@ -21,7 +21,8 @@
   <div *ngIf="!sticker.stEditable" (mousedown)="onMouseDown($event)">
     {{sticker.stText}}
   </div>
-  <div *ngIf="sticker.stEditable" (mousedown)="onMouseDown($event)">
-    {{newText}}
+  <div *ngIf="sticker.stEditable">
+    <textarea name="newText" cols=30 rows=3 [(ngModel)]="newText">
+    </textarea>
   </div>
 </div>

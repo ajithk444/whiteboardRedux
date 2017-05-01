@@ -45,7 +45,7 @@ http://onehungrymind.com/build-better-angular-2-application-redux-ngrx/
 * ok - Delete Sticker as X Button on Sticker
   - Images/Icons from http://www.flaticon.com/packs/system-icons-set
  Had some trouble because of the mousedown handler. This blocks click events on buttons.
-* ToDo - Edit Sticker bei Edit Button on Sticker
+* ok - Edit Sticker bei Edit Button on Sticker
 * ToDo - Save Information on Firebase
 
 
