@@ -1,0 +1,27 @@
+{
+  "stickers": {
+    "s1": {
+      "stID": 1,
+      "stSelected": false,
+      "stEditable": false,
+      "stTitle": "Sticker 1",
+      "stLeft": 10,
+      "stTop": 10,
+      "stWidth": 200,
+      "stHeight": 100,
+      "stText": "Here we go! :-)"
+    },
+    "s2": {
+      "stID": 2,
+      "stSelected": false,
+      "stEditable": false,
+      "stTitle": "Sticker 2",
+      "stLeft": 100,
+      "stTop": 40,
+      "stWidth": 200,
+      "stHeight": 100,
+      "stText": "Here we go 2! :-)"
+    }
+  }
+}
+

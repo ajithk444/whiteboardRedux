@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {IAppState} from "../store";
+import { IAppState } from "../store";
 
 @Component({
   selector: 'ellzap-root',
