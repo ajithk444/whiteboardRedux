@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgReduxModule, NgRedux } from '@angular-redux/store';
@@ -11,6 +12,18 @@ import { IAppState, rootReducer, INITIAL_STATE } from "../store";
 import { WhiteboardComponent } from './whiteboard/whiteboard.component';
 import { StickerComponent } from './sticker/sticker.component';
 import { StickerService } from "./sticker/sticker.service";
+import { LoginComponent } from "./login/login.component";
+import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
+
+const appRoutes: Routes = [
+  { path: 'login', component: LoginComponent },
+  { path: 'whiteboard', component: WhiteboardComponent},
+  { path: '',
+    redirectTo: '/login',
+    pathMatch: 'full'
+  },
+  { path: '**', component: PageNotFoundComponent }
+];
 
 
 @NgModule({
@@ -20,14 +33,17 @@ import { StickerService } from "./sticker/sticker.service";
   declarations: [
     AppComponent,
     WhiteboardComponent,
-    StickerComponent
+    StickerComponent,
+    LoginComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     NgReduxModule,
-    AngularFireModule.initializeApp(firebaseConfig)
+    RouterModule.forRoot(appRoutes) //,
+    // AngularFireModule.initializeApp(firebaseConfig)
   ],
   providers: [StickerService],
   bootstrap: [AppComponent]
