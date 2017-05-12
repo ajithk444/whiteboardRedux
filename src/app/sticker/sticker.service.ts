@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { NgRedux } from "@angular-redux/store";
-import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { ISticker } from "./sticker.interface";
 import { StickerActions } from "./sticker.actions";
 import { MyAction, IAppState } from "../../store";
@@ -10,8 +10,8 @@ export class StickerService {
   newStId: number = 0;
   fSticker: FirebaseListObservable<ISticker[]>;
 
-  constructor(private store: NgRedux<IAppState>, private af: AngularFire) {
-    this.fSticker = af.database.list('/stickers');
+  constructor(private store: NgRedux<IAppState>, private db: AngularFireDatabase) {
+    this.fSticker = db.list('/stickers');
     this.fSticker.subscribe(stickers => {
       stickers.forEach(s => this.store.dispatch(StickerActions.addSticker(s)));
     });

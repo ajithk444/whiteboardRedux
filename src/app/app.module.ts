@@ -42,8 +42,8 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule,
     NgReduxModule,
-    RouterModule.forRoot(appRoutes) //,
-    // AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig),
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [StickerService],
   bootstrap: [AppComponent]
