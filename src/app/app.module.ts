@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgReduxModule, NgRedux } from '@angular-redux/store';
 import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { firebaseConfig } from './app.firebase';
 
 import { AppComponent } from './app.component';
@@ -43,6 +45,8 @@ const appRoutes: Routes = [
     HttpModule,
     NgReduxModule,
     AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule, // imports firebase/database, only needed for database features
+    AngularFireAuthModule, // imports firebase/auth, only needed for auth features
     RouterModule.forRoot(appRoutes)
   ],
   providers: [StickerService],

@@ -1,0 +1,25 @@
+<form #formData='ngForm' (ngSubmit)="onSubmit(formData)">
+<div class="form-container col-md-12">
+  <!-- img src="assets/images/lock.svg" id="lock" -->
+
+  <span class="error" *ngIf="error">{{ error }}</span>
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword" placeholder="Password">
+  </div>
+  <div class="form-group  ">
+  <button type="submit" [disabled]="!formData.valid" class="btn btn-success" id="email">Email Login</button>
+  <button class="btn btn-danger disabled"(click)="loginFb()" id="fb">Login With Facebook</button>
+  <button class="btn btn-info disabled"(click)="loginGoogle()" id="google">Login With Google</button>
+  </div>
+  <!-- button routerLink="/whiteboard" id="email">Email</button -->
+  <div class="col-md-12">
+    <a routerLink="/signup" routerLinkActive="active" class="alc">No account? <strong>Create one here</strong></a>
+  </div>
+</div>
+</form>
