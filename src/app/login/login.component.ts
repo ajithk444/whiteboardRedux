@@ -11,35 +11,30 @@ import * as firebase from 'firebase/app';
 export class LoginComponent implements OnInit {
 
   error: any;
+  emailAdress: string;
+  passcode: string;
 
   constructor(public fireAuthorization: AngularFireAuth, private router: Router) {
 
-    this.fireAuthorization.authState.subscribe(auth => {
+    /*this.fireAuthorization.authState.subscribe(auth => {
       if(auth) {
         this.router.navigateByUrl('/whiteboard');
       }
     });
-  }
-
-  emailLogin() {
-    this.fireAuthorization.auth.signInWithEmailAndPassword("martin@ellzap.ch", "4711hugo")
-      .then((success) => {
-        console.log(success);
-      }).catch((err) => {
-      console.log(err);
-      this.error = err;
-    })
+    */
   }
 
   onSubmit(formData) {
+    console.log("OnSubmit");
     if(formData.valid) {
       console.log(formData.value);
       this.fireAuthorization.auth.signInWithEmailAndPassword(
-          formData.value.email,
-          formData.value.password
+          this.emailAdress,
+          this.passcode
       ).then(
         (success) => {
           console.log(success);
+          this.router.navigateByUrl('/whiteboard');
         }).catch(
         (err) => {
           console.log(err);
