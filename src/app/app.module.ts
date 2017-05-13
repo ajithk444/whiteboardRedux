@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgReduxModule, NgRedux } from '@angular-redux/store';
@@ -16,16 +15,8 @@ import { StickerComponent } from './sticker/sticker.component';
 import { StickerService } from "./sticker/sticker.service";
 import { LoginComponent } from "./login/login.component";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
-
-const appRoutes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'whiteboard', component: WhiteboardComponent},
-  { path: '',
-    redirectTo: '/login',
-    pathMatch: 'full'
-  },
-  { path: '**', component: PageNotFoundComponent }
-];
+import {AuthGuard} from "./auth.service";
+import {routes} from "./app.routes";
 
 
 @NgModule({
@@ -47,9 +38,9 @@ const appRoutes: Routes = [
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule, // imports firebase/database, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
-    RouterModule.forRoot(appRoutes)
+    routes
   ],
-  providers: [StickerService],
+  providers: [StickerService, AuthGuard],
   bootstrap: [AppComponent]
 })
 
