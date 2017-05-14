@@ -17,6 +17,7 @@ import { LoginComponent } from "./login/login.component";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 import {AuthGuard} from "./auth.service";
 import {routes} from "./app.routes";
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import {routes} from "./app.routes";
     WhiteboardComponent,
     StickerComponent,
     LoginComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
