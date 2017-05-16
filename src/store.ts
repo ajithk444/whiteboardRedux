@@ -2,6 +2,7 @@ import {WhiteboardActions} from "./app/whiteboard/whiteboard.actions";
 import {StickerActions} from "./app/sticker/sticker.actions";
 import {ISticker} from "./app/sticker/sticker.interface";
 import {IPoint} from "./app/helpers/point.interface";
+import {DbActions} from "./app/db/db.actions";
 
 export interface MyAction {
   type: string,
@@ -10,6 +11,9 @@ export interface MyAction {
 
 
 export interface IAppState {
+
+  // Steering the User Data
+  userName: String;
 
   // Steering MouseHandling:
   mouseDown: IPoint;
@@ -26,6 +30,7 @@ export interface IAppState {
 }
 
 export const INITIAL_STATE: IAppState = {
+  userName: "",
 
   mouseDown: null,
 
@@ -41,6 +46,10 @@ export const INITIAL_STATE: IAppState = {
 export function rootReducer(lastState: IAppState, action: MyAction) {
   let result: any;
   switch(action.type) {
+    // DB Actions:
+    case  DbActions.DB_USER_LOGIN:
+      return Object.assign({}, lastState, {userName: action.payload});
+
     // ***************************
     // *** Whiteboard actions: ***
     // ***************************

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { AngularFireAuth } from 'angularfire2/auth';
+import {NgRedux} from "@angular-redux/store";
+import {IAppState} from "../../store";
+import {DbActions} from "../db/db.actions";
 //import * as firebase from 'firebase/app';
 
 @Component({
@@ -14,7 +17,7 @@ export class LoginComponent implements OnInit {
   emailAdress: string;
   passcode: string;
 
-  constructor(public fireAuthorization: AngularFireAuth, private router: Router) {
+  constructor(public fireAuthorization: AngularFireAuth, private router: Router, private store: NgRedux<IAppState>) {
 
     /*this.fireAuthorization.authState.subscribe(auth => {
       if(auth) {
@@ -34,6 +37,7 @@ export class LoginComponent implements OnInit {
       ).then(
         (success) => {
           console.log(success);
+          this.store.dispatch(DbActions.userLogin(this.emailAdress));
           this.router.navigateByUrl('/whiteboard');
         }).catch(
         (err) => {

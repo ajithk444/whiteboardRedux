@@ -6,7 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {LoginComponent} from "./login/login.component";
 import {WhiteboardComponent} from "./whiteboard/whiteboard.component";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
-import {AuthGuard} from "./auth.service";
+import {AuthGuard} from "./db/auth.service";
 
 export const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
