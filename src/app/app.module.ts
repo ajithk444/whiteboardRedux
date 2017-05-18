@@ -18,6 +18,7 @@ import { PageNotFoundComponent } from "./page-not-found/page-not-found.component
 import {AuthGuard} from "./db/auth.service";
 import {routes} from "./app.routes";
 import { NavbarComponent } from './navbar/navbar.component';
+import { DbService } from "./db/db.service";
 
 
 @NgModule({
@@ -42,7 +43,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
     routes
   ],
-  providers: [StickerService, AuthGuard],
+  providers: [StickerService, AuthGuard, DbService],
   bootstrap: [AppComponent]
 })
 

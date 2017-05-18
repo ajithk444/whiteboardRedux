@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-import { AngularFireAuth } from 'angularfire2/auth';
 import {NgRedux} from "@angular-redux/store";
 import {IAppState} from "../../store";
-import {DbActions} from "../db/db.actions";
-//import * as firebase from 'firebase/app';
+import {DbService} from "../db/db.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-login',
@@ -16,37 +15,55 @@ export class LoginComponent implements OnInit {
   error: any;
   emailAdress: string;
   passcode: string;
+  dbloggedIn$: Observable<boolean>;
 
-  constructor(public fireAuthorization: AngularFireAuth, private router: Router, private store: NgRedux<IAppState>) {
+  constructor(private dbService: DbService, private router: Router, private store: NgRedux<IAppState>) {
 
-    /*this.fireAuthorization.authState.subscribe(auth => {
-      if(auth) {
-        this.router.navigateByUrl('/whiteboard');
-      }
+    this.dbloggedIn$ = this.store.select("dbLoggedIn");
+    this.dbloggedIn$.subscribe((x) => {
+        console.log ("x ===> " + x);
+        if(x) {
+          this.router.navigateByUrl('/whiteboard');
+        } else {
+          this.error = "Login not sucessful!"
+        }
     });
-    */
+
+
+      /*this.fireAuthorization.authState.subscribe(auth => {
+        if(auth) {
+          this.router.navigateByUrl('/whiteboard');
+        }
+      });
+      */
   }
 
   onSubmit(formData) {
     console.log("OnSubmit");
-    if(formData.valid) {
-      console.log(formData.value);
-      this.fireAuthorization.auth.signInWithEmailAndPassword(
-          this.emailAdress,
-          this.passcode
-      ).then(
-        (success) => {
-          console.log(success);
-          this.store.dispatch(DbActions.userLogin(this.emailAdress));
-          this.router.navigateByUrl('/whiteboard');
-        }).catch(
-        (err) => {
-          console.log(err);
-          this.error = err;
-        })
-    }
-  }
+    this.dbService.dbLoginWithEmail(this.emailAdress, this.passcode);
+  } // of onSubmit(formData).
 
+    /*
+    onSubmit(formData) {
+      console.log("OnSubmit");
+      if(formData.valid) {
+        console.log(formData.value);
+        this.fireAuthorization.auth.signInWithEmailAndPassword(
+            this.emailAdress,
+            this.passcode
+        ).then(
+          (success) => {
+            console.log(success);
+            this.store.dispatch(DbActions.userLogin(this.emailAdress));
+            this.router.navigateByUrl('/whiteboard');
+          }).catch(
+          (err) => {
+            console.log(err);
+            this.error = err;
+          })
+      }
+    }
+  */
   ngOnInit() {
   }
 

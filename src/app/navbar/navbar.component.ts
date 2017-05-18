@@ -11,6 +11,7 @@ import {Observable} from "rxjs";
 export class NavbarComponent implements OnInit {
   title = "ellzap.ch";
   @select() readonly userName$: Observable<string>;
+  @select() readonly dbLoggedIn$: Observable<boolean>;
 
   constructor(private store: NgRedux<IAppState>) {
 
