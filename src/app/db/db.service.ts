@@ -19,7 +19,21 @@ export class DbService {
       }).catch(
       (err) => {
         console.log(err);
-        this.store.dispatch(DbActions.userLoginFailed());
+        this.store.dispatch(DbActions.userLoginFailed(""+ err));
       });
   } // of dbLoginWithEmail(emailAdress: string, passcode: string);
+
+  dbLogOut() {
+    this.fireAuthorization.auth.signOut()
+      .then(
+        (success) => {
+          console.log("logout dispatch!")
+          this.store.dispatch(DbActions.userLogout());
+        }).catch(
+          (err) => {
+          console.log(err);
+      });
+  } // of dbLogOut.
+
 } // of class DbService
+

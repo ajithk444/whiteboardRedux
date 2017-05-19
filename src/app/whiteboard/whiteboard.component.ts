@@ -18,7 +18,21 @@ export class WhiteboardComponent implements OnInit {
   @select() readonly wbHeight$: Observable<number>;
   @select() readonly stickers$: Observable<Array<ISticker>>;
 
-  constructor(private store: NgRedux<IAppState>, private stickerService: StickerService) {};
+
+  constructor(private store: NgRedux<IAppState>, private stickerService: StickerService) {
+/*    this.dbloggedIn$ = this.store.select("dbLoggedIn");
+    this.dbloggedIn$.subscribe((x) => {
+      console.log ("x ===> " + x);
+      if(x) {
+        this.router.navigateByUrl('/whiteboard');
+      } else {
+        this.error = "Login not sucessful!"
+      }
+
+    };
+  */
+  }
+
 
   ngOnInit() {
 

@@ -11,9 +11,10 @@ export interface MyAction {
 
 
 export interface IAppState {
-
+  // Error handling
+  errorTxt: string;
   // Steering the User Data
-  userName: String;
+  userName: string;
   dbLoggedIn: boolean;
 
   // Steering MouseHandling:
@@ -31,6 +32,7 @@ export interface IAppState {
 }
 
 export const INITIAL_STATE: IAppState = {
+  errorTxt: "",
   userName: "",
   dbLoggedIn: false,
 
@@ -52,7 +54,11 @@ export function rootReducer(lastState: IAppState, action: MyAction) {
     case  DbActions.DB_USER_LOGIN:
       return Object.assign({}, lastState, {userName: action.payload, dbLoggedIn: true});
     case  DbActions.DB_USER_LOGIN_FAILED:
-      return Object.assign({}, lastState, {userName: "", dbLoggedIn: false});
+      //console.log("==> " + JSON.stringify(action));
+      return Object.assign({}, lastState, {userName: "", dbLoggedIn: false, errorTxt: action.payload});
+  case  DbActions.DB_USER_LOGOUT:
+      //console.log("==> " + JSON.stringify(action));
+      return Object.assign({}, lastState, {userName: "", dbLoggedIn: false, errorTxt: ""});
 
     // ***************************
     // *** Whiteboard actions: ***

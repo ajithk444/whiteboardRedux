@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-import {NgRedux} from "@angular-redux/store";
+import {select, NgRedux} from "@angular-redux/store";
 import {IAppState} from "../../store";
 import {DbService} from "../db/db.service";
 import {Observable} from "rxjs";
@@ -12,20 +12,17 @@ import {Observable} from "rxjs";
 })
 export class LoginComponent implements OnInit {
 
-  error: any;
   emailAdress: string;
   passcode: string;
-  dbloggedIn$: Observable<boolean>;
+  @select() readonly errorTxt$: Observable<string>;
+  @select() readonly dbLoggedIn$: Observable<boolean>;
 
   constructor(private dbService: DbService, private router: Router, private store: NgRedux<IAppState>) {
 
-    this.dbloggedIn$ = this.store.select("dbLoggedIn");
-    this.dbloggedIn$.subscribe((x) => {
-        console.log ("x ===> " + x);
+    this.dbLoggedIn$.subscribe((x) => {
+        //console.log ("x ===> " + x);
         if(x) {
           this.router.navigateByUrl('/whiteboard');
-        } else {
-          this.error = "Login not sucessful!"
         }
     });
 
