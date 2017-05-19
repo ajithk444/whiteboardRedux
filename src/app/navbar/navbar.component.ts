@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {NgRedux, select} from "@angular-redux/store";
 import {IAppState} from "../../store";
 import {Observable} from "rxjs";
+import {DbService} from "../db/db.service";
 
 @Component({
   selector: 'ellzap-navbar',
@@ -13,10 +14,13 @@ export class NavbarComponent implements OnInit {
   @select() readonly userName$: Observable<string>;
   @select() readonly dbLoggedIn$: Observable<boolean>;
 
-  constructor(private store: NgRedux<IAppState>) {
+  constructor(private dbService: DbService, private store: NgRedux<IAppState>) {
 
   }
-
+  onSubmit(formData) {
+    console.log("OnSubmit: "+ JSON.stringify(formData.value));
+    this.dbService.dbLoginWithEmail(formData.value.emailAdress, formData.value.passcode);
+  } // of onSubmit(formData).
   ngOnInit() {
   }
 
