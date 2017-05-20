@@ -16,12 +16,13 @@ export class NavbarComponent implements OnInit {
   @select() readonly dbLoggedIn$: Observable<boolean>;
 
   constructor(private dbService: DbService, private router: Router, private store: NgRedux<IAppState>) {
-    this.dbLoggedIn$.subscribe(x => {
+    /*this.dbLoggedIn$.subscribe(x => {
         if(!x) {
           console.log("NavBar: Logged out");
           this.router.navigateByUrl("/");
         }
      });
+     */
   } // of constructor(...)
 
   ngOnInit() {
@@ -29,7 +30,9 @@ export class NavbarComponent implements OnInit {
 
   onSubmit(formData) {
     console.log("OnSubmit: "+ JSON.stringify(formData.value));
-    this.dbService.dbLoginWithEmail(formData.value.emailAdress, formData.value.passcode);
+    let emailAdress: string = formData.value.emailAdress || "";
+    let passcode: string =  formData.value.passcode || "";
+    this.dbService.dbLoginWithEmail(emailAdress, passcode);
   } // of onSubmit(formData).
 
   logout() {

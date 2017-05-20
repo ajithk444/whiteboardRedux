@@ -20,17 +20,6 @@ export class WhiteboardComponent implements OnInit {
 
 
   constructor(private store: NgRedux<IAppState>, private stickerService: StickerService) {
-/*    this.dbloggedIn$ = this.store.select("dbLoggedIn");
-    this.dbloggedIn$.subscribe((x) => {
-      console.log ("x ===> " + x);
-      if(x) {
-        this.router.navigateByUrl('/whiteboard');
-      } else {
-        this.error = "Login not sucessful!"
-      }
-
-    };
-  */
   }
 
 

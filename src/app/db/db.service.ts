@@ -18,7 +18,7 @@ export class DbService {
         this.store.dispatch(DbActions.userLogin(emailAdress));
       }).catch(
       (err) => {
-        console.log(err);
+        console.log("xxx =>: " + err);
         this.store.dispatch(DbActions.userLoginFailed(""+ err));
       });
   } // of dbLoginWithEmail(emailAdress: string, passcode: string);

@@ -19,6 +19,7 @@ import {AuthGuard} from "./db/auth.service";
 import {routes} from "./app.routes";
 import { NavbarComponent } from './navbar/navbar.component';
 import { DbService } from "./db/db.service";
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { DbService } from "./db/db.service";
     StickerComponent,
     LoginComponent,
     PageNotFoundComponent,
-    NavbarComponent
+    NavbarComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
